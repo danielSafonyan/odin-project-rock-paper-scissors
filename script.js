@@ -5,6 +5,18 @@ function getComputeChoice() {
     return OPTIONS[randomNum]
 }
 
-for (let i = 1; i <= 30; i++) {
-    console.log(getComputeChoice());
-  }
+function getUserChoice() {
+    while(true) {
+        userChoice = prompt("Chose Rock, Paper or Scissors", "scissors");
+        userChoice = userChoice.toLowerCase()
+        if (OPTIONS.includes(userChoice)) {
+            return userChoice
+        } else {
+            alert("Check your spelling. Available options: Rock, Paper, Scissors")
+        }
+    }
+}
+
+for (let i = 0; i <= 5; i++) {
+    console.log(getUserChoice())
+}
