@@ -1,39 +1,91 @@
-// const OPTIONS = ['rock', 'paper', 'scissors']
+let roundNum = 0;
+let userScore = 0;
+let computerScore = 0;
 
-// function getComputeChoice() {
-//     randomNum = Math.floor(Math.random() * OPTIONS.length);
-//     return OPTIONS[randomNum];
-// }
+const OPTIONS = ['rock', 'paper', 'scissors'];
 
-// function getUserChoice() {
-//     while(true) {
-//         userChoice = prompt("Chose Rock, Paper or Scissors", "scissors");
-//         userChoice = userChoice.toLowerCase();
-//         if (OPTIONS.includes(userChoice)) {
-//             return userChoice;
-//         } else {
-//             alert("Check your spelling. Available options: Rock, Paper, Scissors");
-//         }
-//     }
-// }
+function getComputeChoice() {
+    randomNum = Math.floor(Math.random() * OPTIONS.length);
+    return OPTIONS[randomNum];
+}
 
-// function playRound() {
-//     computerChoice = getComputeChoice();
-//     userChoice = getUserChoice()
+function getUserChoice(event) {
+    return event.target.innerText;
+}
 
-//     if (computerChoice == userChoice) {
-//         alert(`Computer has chosen ${computerChoice}. You have chosen ${userChoice}. It's a draw.`)
-//     } else if (computerChoice == 'paper' && userChoice == 'rock') {
-//         alert(`Computer has chosen ${computerChoice}. You have chosen ${userChoice}. Computer wins.`)
-//     } else if (computerChoice == 'scissors' && userChoice == 'paper') {
-//         alert(`Computer has chosen ${computerChoice}. You have chosen ${userChoice}. Computer wins.`)
-//     } else if (computerChoice == 'rock' && userChoice == 'scissors') {
-//         alert(`Computer has chosen ${computerChoice}. You have chosen ${userChoice}. Computer wins.`)
-//     } else {
-//         alert(`Computer has chosen ${computerChoice}. You have chosen ${userChoice}. You win.`)
-//     }
-// }
+const choiceOptions = document.querySelectorAll('.choice-option');
+choiceOptions.forEach(addEvent);
 
-// for (let i = 0; i < 5; i++) {
-//     playRound()
-// }
+function addEvent(choice) {
+    choice.addEventListener('click', playRound)
+}
+
+function determineWinner(userChoice, computerChoice) {
+    let message = "It's a draw.";
+
+    if (computerChoice == userChoice) {
+        message = "It's a draw.";
+    } else if (computerChoice == 'paper' && userChoice == 'rock') {
+        message = "Computer wins."
+    } else if (computerChoice == 'scissors' && userChoice == 'paper') {
+        message = "Computer wins."
+    } else if (computerChoice == 'rock' && userChoice == 'scissors') {
+        message = "Computer wins."
+    } else {
+        message = "You win.";
+    }
+    return message;
+}
+
+
+function playRound(event) {
+    roundNum++
+    let roundCounter = document.querySelector('.round');
+    roundCounter.innerText = roundNum;
+
+    let userChoice = getUserChoice(event)
+    let userDisplayedChoice = document.querySelector('.choice.user');
+    userDisplayedChoice.innerText = userChoice;
+
+    let computerChoice = getComputeChoice();
+    let computerDisplayedChoice = document.querySelector('.choice.computer');
+    computerDisplayedChoice.innerText = computerChoice;
+
+    let resultMessagee = determineWinner(userChoice, computerChoice);
+    let displayedResultMessage = document.querySelector('section > span');
+    displayedResultMessage.innerText = resultMessagee;
+
+    if (resultMessagee === "You win.") {
+        userScore++;
+        displayedUserScore = document.querySelector(".score.user");
+        displayedUserScore.innerText = userScore;
+    }
+    if (resultMessagee === "Computer wins.") {
+        computerScore++;
+        displayedComputerrScore = document.querySelector(".score.computer");
+        displayedComputerrScore.innerText = computerScore;
+    }
+
+
+    if (userScore === 5 || computerScore === 5) {
+        let startOver = prompt("Game over. Do you want to play again? Yes/No.", "Yes")
+        startOver = startOver.toLowerCase()
+        if (startOver === 'yes') {
+            roundNum = 0;
+            roundCounter.innerText = roundNum;
+
+            userScore = 0;
+            displayedUserScore.innerText = userScore;
+
+            computerScore = 0;
+            displayedComputerrScore.innerText = computerScore;
+            
+            displayedResultMessage.innerText = 'Start a game by chosing rock, paper or scissors';
+        } else {
+            let html = document.querySelector("body");
+            let footer = document.querySelector("footer");
+            html.removeChild(footer);
+        }
+        
+    }
+}

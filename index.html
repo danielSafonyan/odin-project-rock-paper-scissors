@@ -3,8 +3,13 @@
 <head>
     <title>Rock Paper Scissors</title>
     <meta charset="UTF-8">
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
     <style>
+        header,
+        section,
+        footer {
+            padding: 30px 60px;
+        }
         header {
             display: flex;
             justify-content: space-around;
@@ -51,23 +56,23 @@
     <header>
         <div class="score-container">
             <span>Your Score</span>
-            <div class="score user">1</div>
+            <div class="score user">0</div>
         </div>
         <div class="score-container">
             <span>Round</span>
-            <div class="round">1</div>
+            <div class="round">0</div>
         </div>
         <div class="score-container">
             <span>Computer Score</span>
-            <div class="score computer">1</div>
+            <div class="score computer">0</div>
         </div>
     </header>
     <section>
         <div>
-            <div class="choice user">User Chose Rock</div>
-            <div class="choice computer">Computer Chose Scissors</div>
+            <div class="choice user">User Choice</div>
+            <div class="choice computer">Computer Choice</div>
         </div>
-        <span>You win</span>
+        <span>Start a game by chosing rock, paper or scissors.</span>
     </section>
     <footer>
         <div data-type="rock" class="choice-option">rock</div>
