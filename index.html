@@ -4,8 +4,75 @@
     <title>Rock Paper Scissors</title>
     <meta charset="UTF-8">
     <script src="./script.js"></script>
+    <style>
+        header {
+            display: flex;
+            justify-content: space-around;
+        }
+        .score-container {
+            border: 1px solid black;
+            padding: 10px 30px;
+
+        }
+        section {
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        section > div {
+            display: flex;
+            justify-content: space-around;
+            
+        }
+
+        section > span {
+            align-self: center;
+        }
+
+        .choice {
+            border: 1px solid black;
+            padding: 20px 50px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-around;
+            
+        }
+
+        .choice-option {
+            border: 1px solid black;
+            padding: 10px 30px;
+        }
+    </style>
 </head>
 <body>
-    Hello, World!
+    <header>
+        <div class="score-container">
+            <span>Your Score</span>
+            <div class="score user">1</div>
+        </div>
+        <div class="score-container">
+            <span>Round</span>
+            <div class="round">1</div>
+        </div>
+        <div class="score-container">
+            <span>Computer Score</span>
+            <div class="score computer">1</div>
+        </div>
+    </header>
+    <section>
+        <div>
+            <div class="choice user">User Chose Rock</div>
+            <div class="choice computer">Computer Chose Scissors</div>
+        </div>
+        <span>You win</span>
+    </section>
+    <footer>
+        <div data-type="rock" class="choice-option">rock</div>
+        <div data-type="paper" class="choice-option">paper</div>
+        <div data-type="scissors" class="choice-option">scissors</div>
+    </footer>
 </body>
 </html>
