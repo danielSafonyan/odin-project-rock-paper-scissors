@@ -2,7 +2,22 @@ let roundNum = 0;
 let userScore = 0;
 let computerScore = 0;
 
-const OPTIONS = ['rock', 'paper', 'scissors'];
+const rock = {
+    repr: 'rock',
+    displayRepr: '👊🏻'
+}
+
+const paper = {
+    repr: 'paper',
+    displayRepr: '✋🏻'
+}
+
+const scissors = {
+    repr: 'scissors',
+    displayRepr: '✌🏻'
+}
+
+const OPTIONS = [rock, paper, scissors];
 
 function getComputeChoice() {
     randomNum = Math.floor(Math.random() * OPTIONS.length);
@@ -10,7 +25,12 @@ function getComputeChoice() {
 }
 
 function getUserChoice(event) {
-    return event.target.innerText;
+    for (let i = 0; i < OPTIONS.length; i++) {
+        if (OPTIONS[i].displayRepr === event.target.innerText) {
+            return OPTIONS[i]
+        };
+        
+    }
 }
 
 const choiceOptions = document.querySelectorAll('.choice-option');
@@ -22,7 +42,7 @@ function addEvent(choice) {
 
 function determineWinner(userChoice, computerChoice) {
     let message = "It's a draw.";
-
+    console.log(userChoice, computerChoice)
     if (computerChoice == userChoice) {
         message = "It's a draw.";
     } else if (computerChoice == 'paper' && userChoice == 'rock') {
@@ -45,13 +65,13 @@ function playRound(event) {
 
     let userChoice = getUserChoice(event)
     let userDisplayedChoice = document.querySelector('.choice.user');
-    userDisplayedChoice.innerText = userChoice;
+    userDisplayedChoice.innerText = userChoice.displayRepr;
 
     let computerChoice = getComputeChoice();
     let computerDisplayedChoice = document.querySelector('.choice.computer');
-    computerDisplayedChoice.innerText = computerChoice;
+    computerDisplayedChoice.innerText = computerChoice.displayRepr;
 
-    let resultMessagee = determineWinner(userChoice, computerChoice);
+    let resultMessagee = determineWinner(userChoice.repr, computerChoice.repr);
     let displayedResultMessage = document.querySelector('section > span');
     displayedResultMessage.innerText = resultMessagee;
 
